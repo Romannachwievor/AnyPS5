@@ -1,6 +1,7 @@
 #include "prx/libSceNKWebKit/include/FieldGettersExports.hpp"
 
 #include <cstdint>
+#include <cstring>
 
 extern "C" {
 
@@ -432,7 +433,9 @@ std::uint32_t APS5_VABI _ZNK7WebCore20ISOOriginalFormatBox10dataFormatEv(const v
 }
 
 std::uint32_t APS5_VABI _ZNK7WebCore22DefaultFilterOperation15representedTypeEv(const void* self) {
-    return *reinterpret_cast<const std::uint32_t*>(static_cast<const char*>(self) + 0x10);
+    std::uint32_t value;
+    std::memcpy(&value, static_cast<const char*>(self) + 0x10, sizeof(value));
+    return value;
 }
 
 std::uint32_t APS5_VABI _ZNK7WebCore25DropShadowFilterOperation12stdDeviationEv(const void* self) {

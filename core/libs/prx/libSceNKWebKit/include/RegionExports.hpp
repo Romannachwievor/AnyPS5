@@ -384,7 +384,7 @@ struct Length {
 
 static_assert(sizeof(Length) == 8);
 
-enum class FilterOperationType : std::uint8_t {
+enum class FilterOperationType : std::uint32_t {
     Reference,
     Grayscale,
     Sepia,
@@ -406,7 +406,6 @@ struct FilterOperation {
     void* m_vptr{nullptr};
     mutable std::atomic<unsigned> m_refCount{1};
     FilterOperationType m_type{FilterOperationType::Default};
-    std::uint8_t m_pad[3]{0, 0, 0};
 
     using Type = FilterOperationType;
     Type type() const { return m_type; }
@@ -424,7 +423,6 @@ static_assert(sizeof(FilterOperation) == 16);
 
 struct DefaultFilterOperation : public FilterOperation {
     FilterOperationType m_representedType{FilterOperationType::Default};
-    std::uint8_t m_subPad[7]{0, 0, 0, 0, 0, 0, 0};
 
     FilterOperationType representedType() const { return m_representedType; }
 };

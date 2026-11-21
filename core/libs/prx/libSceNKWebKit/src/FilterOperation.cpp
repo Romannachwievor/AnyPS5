@@ -171,7 +171,7 @@ void ConstructDefaultFilterOperation(WebCore::DefaultFilterOperation* self, std:
     self->m_vptr = const_cast<FilterOperationVtable*>(&DefaultFilterOperationVtableInstance.dispatch);
     self->m_refCount.store(1, std::memory_order_relaxed);
     self->m_type = WebCore::FilterOperationType::Default;
-    *reinterpret_cast<std::uint32_t*>(&self->m_representedType) = representedType;
+    self->m_representedType = static_cast<WebCore::FilterOperationType>(representedType);
 }
 
 void ConstructInvertLightnessFilterOperation(WebCore::InvertLightnessFilterOperation* self) {
