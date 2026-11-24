@@ -18,7 +18,7 @@ Auf `main` läuft keine macOS-CI, deshalb sind heute zwei macOS-Brüche unbemerk
 
 ## Setup
 
-- Docker Offload: `docker info` ok. `docker offload create --cpus 8 --memory 16g --idle-timeout 10m --ttl 4h` hing 240 s ohne jede Ausgabe und ohne Trace-ID (rc 124). `docker offload stop` war erfolgreich. Rechenzeit: 0 min CPU, 0 min GPU. Eine alte Sandbox steht seit fünf Tagen auf "Stopping".
+- Docker Offload: `docker info` ok. `docker offload create --cpus 8 --memory 16g --idle-timeout 10m --ttl 4h` hing 240 s ohne jede Ausgabe und ohne Trace-ID (rc 124). `docker offload stop` war erfolgreich. Rechenzeit: 0 min CPU, 0 min GPU. Eine alte Sandbox stand seit fünf Tagen auf "Stopping"; am Ende des Laufs zeigt `status` "Stopped".
 - Weg 2 (Nightly-Workflow im Fork per `workflow_dispatch`): HTTP 404, weil `sanitizers.yml` auf Fork-main nicht registriert ist. Registrieren hieße CI-Config im Fork ändern, das ist verboten.
 - Weg 3 (lokales Docker, `linux/amd64` unter Rosetta): Kontrolltest bestanden, GCC 13.3 mit ASan meldet einen bekannten heap-use-after-free. Gebraucht habe ich ihn nicht, weil kein Linux-only-Fehler ohne Besitzer übrig war.
 - Builds liefen nur über den neuen Wrapper `~/Projects/anyps5-tools/aps5-build` (Lock, Log, ninja-rc). `pause-builds stop|cont` hält laufende Builds an, wenn ein Test mit Timeout laufen muss.
@@ -55,7 +55,7 @@ Neu: `GuestCopyOut` auf macOS kürzt die Byte-Zahl auf 32 Bit (libc/src/General.
 
 1. #26739 und #26729 sind Drafts. Sobald die CI grün ist, auf Review stellen: `gh pr ready 26739 --repo boykopovar/AnyPS5` und `gh pr ready 26729 --repo boykopovar/AnyPS5`. #26739 zuerst, ohne ihn baut libc auf macOS nicht.
 2. Fork-Branch `auto/san-main-run5` stammt aus dem Versuch über Weg 2. Der Prompt erlaubt mir nicht, ihn zu löschen: `git push fork --delete auto/san-main-run5`
-3. Docker Offload: `create` hängt ohne Ausgabe, eine alte Sandbox steht seit fünf Tagen auf "Stopping". Im Docker-Dashboard prüfen oder die Offload-Regel aus dem Prompt nehmen.
+3. Docker Offload: `create` hängt ohne Ausgabe. Die alte Sandbox stand zu Beginn seit fünf Tagen auf "Stopping", am Ende zeigt `docker offload status` "Stopped", und desktop-linux ist der aktive Kontext. Offload für das Konto prüfen oder die Offload-Regel aus dem Prompt nehmen.
 4. Bei #26519 bis zum 2026-12-01 nicht nachfassen (unverändert).
 5. Codex-Wrapper in `~/.claude/agents/codex-*.md`: Den `codex exec`-Befehlen fehlt das Pflicht-Flag `-c 'plugins."ruflo-core@ruflo".enabled=false'`, und es fehlt der Hinweis, Briefings ohne Sicherheitsvokabular zu formulieren. Ich wollte beides ergänzen, der Auto-Mode-Klassifikator hat die Änderung abgelehnt. Diff: `reflect-agents-proposal.md` im Run-Ordner. In diesem Lauf habe ich Codex direkt mit dem Flag gestartet.
 
