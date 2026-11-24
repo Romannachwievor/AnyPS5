@@ -15,6 +15,7 @@ Die eigenen PRs brauchten keinen Code: kein offener Thread, Helldiverr meldet f�
 - Setup: Codex-Modelle neu ermittelt, Reflect-Regeln in `~/.claude/CLAUDE.md` und `~/.claude/agents` ergänzt, `codex-astra.md` angelegt, Fork-PR #1 geschlossen, alte Branches gelöscht.
 - Reflect am Ende (nur Verschärfungen): `~/.claude/CLAUDE.md` bekommt drei Regeln (Log-Zeiten nur per `date`, Stub-Meldungen von Workern vor dem Backlog auf Herkunfts-PR, pinnenden Test und Debt-Eintrag prüfen, zsh-Listen als Array oder `${=VAR}`), `scout.md` eine (kein lokales `git log -S` oder `git blame` im Partial Clone).
 - Aufgeräumt: Worktrees `wt-main` und `split-seed` entfernt, `git worktree prune` hat dabei auch verwaiste Einträge alter Scratchpad-Worktrees entfernt (Ordner gab es nicht mehr). `../anyps5-wt/label` ist älter als dieser Lauf und bleibt.
+- Dieser Bericht: Fork-Draft [#3](https://github.com/Romannachwievor/AnyPS5/pull/3). Fork-`main` liegt 4572 Commits hinter upstream, deshalb ist die Basis `auto/report-base-2026-11-24` (= upstream `main` `38d22efc06`), sonst zeigte der PR 3448 Dateien. Alter Branch `auto/report` gelöscht, Fork-PR #2 war schon zu.
 
 ## Merge-Entscheidung
 
